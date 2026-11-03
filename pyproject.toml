@@ -1,0 +1,20 @@
+[project]
+name = "review-scraper"
+version = "0.1.0"
+description = "Web scraping tool used to  gather reviews  from platforms and online threads"
+readme = "README.md"
+authors = [
+    { name = "deepak", email = "deepakdobbala22@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "playwright>=1.64.1",
+    "scrapy>=2.19.0",
+]
+
+[project.scripts]
+review-scraper = "review_scraper:main"
+
+[build-system]
+requires = ["uv_build>=0.12.2,<0.13.0"]
+build-backend = "uv_build"
