@@ -44,7 +44,9 @@ class DemoScraper(scrapy.Spider):
         #     output_file.write(html_soup.prettify())
         #print(f"written to the file {file_path}") 
         page_id = response.meta['page_id']
+        response.meta["url"] = str(response)
         quote_id = 0
+        yield response.meta
         for quote in response.css("div.quote"):
             quote_text = quote.css("span.text::text").get()
             quote_author = quote.css("small.author::text").get()
@@ -62,9 +64,22 @@ class DemoScraper(scrapy.Spider):
                 "quote_tags" : quote_tags,
             }
 
-        next_page = response.css('li.next a[href^="/page"]::attr(href)').get()
-        next_page = response.urljoin(next_page)
-        yield scrapy.Request(next_page, callback = self.parse, meta = {"page_id":page_id+1})
+        # we can use Two type of fcallback functions to trigger the link following on is the usual scrapy.Request() fucntions  which returns a callback function that will access the info from the reroute url
+        # The second Method is using response.follow() function  it will also return a request object but is not required to urljoin() before hand
+        # we can also use a follow_all() function to throw in all the next__page linkes without having to loop over the list
+        # in the Request objects for scrapy the 'callback' attribute dictates what function should be executed once the HTML resposneis obtained
+
+        # for next_page in response.css('li.next a[href^="/page"]::attr(href)').getall():
+        #     if next_page is None:
+        #         continue
+        #     yield response.follow(next_page,callback = self.parse, meta = {"page_id":page_id+1})
+
+        next_page_list = response.css("li.next a[href^='/page']::attr(href)").getall()
+        yield from response.follow_all(next_page_list, callback = self.parse, meta = {"page_id":page_id+1})
+
+        # next_page = response.css('li.next a[href^="/page"]::attr(href)').get()
+        # next_page = response.urljoin(next_page)
+        # yield scrapy.Request(next_page, callback = self.parse, meta = {"page_id":page_id+1})
 
            
         
