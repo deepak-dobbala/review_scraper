@@ -47,6 +47,8 @@ class DemoScraper(scrapy.Spider):
         response.meta["url"] = str(response)
         quote_id = 0
         yield response.meta
+        file_path = Path(f"pages/Quotes-page-{response.meta.page_id}.jsonl")
+        file_path.parent.mkdir(parents=True)
         for quote in response.css("div.quote"):
             quote_text = quote.css("span.text::text").get()
             quote_author = quote.css("small.author::text").get()
