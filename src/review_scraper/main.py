@@ -4,7 +4,7 @@ import scrapy
 # BeautifulSoup or bs4 is for theformatting and linting sections of the response  body; can also be used for parsing and modifying the data in the HTML or XMl data
 from bs4 import BeautifulSoup
 from pathlib import Path
-
+import datetime
 
 # to run the spider wee have two ways 
 # 1. use crawl > $ scrapy crawl quotes , this willwork when  the scrapy rpoejct was initalized
@@ -47,8 +47,9 @@ class DemoScraper(scrapy.Spider):
         response.meta["url"] = str(response)
         quote_id = 0
         yield response.meta
-        file_path = Path(f"pages/Quotes-page-{response.meta.page_id}.jsonl")
-        file_path.parent.mkdir(parents=True)
+        file_path = Path(f"pages/Quotes-page-{response.meta["page_id"]}.jsonl")
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+        data = []
         for quote in response.css("div.quote"):
             quote_text = quote.css("span.text::text").get()
             quote_author = quote.css("small.author::text").get()
@@ -65,6 +66,9 @@ class DemoScraper(scrapy.Spider):
                 "quote_author" : quote_author,
                 "quote_tags" : quote_tags,
             }
+        # with open(file_path,'w') as output_file:
+        #     for record in data:
+        #         output_file.write(str(record)+"\n")
 
         # we can use Two type of fcallback functions to trigger the link following on is the usual scrapy.Request() fucntions  which returns a callback function that will access the info from the reroute url
         # The second Method is using response.follow() function  it will also return a request object but is not required to urljoin() before hand
@@ -76,12 +80,40 @@ class DemoScraper(scrapy.Spider):
         #         continue
         #     yield response.follow(next_page,callback = self.parse, meta = {"page_id":page_id+1})
 
-        next_page_list = response.css("li.next a[href^='/page']::attr(href)").getall()
-        yield from response.follow_all(next_page_list, callback = self.parse, meta = {"page_id":page_id+1})
+        # next_page_list = response.css("li.next a[href^='/page']::attr(href)").getall()
+        # yield from response.follow_all(next_page_list, callback = self.parse, meta = {"page_id":page_id+1})
 
         # next_page = response.css('li.next a[href^="/page"]::attr(href)').get()
         # next_page = response.urljoin(next_page)
         # yield scrapy.Request(next_page, callback = self.parse, meta = {"page_id":page_id+1})
 
-           
-        
+
+class DemoScraper2(scrapy.Spider):
+    name = "quotes2"
+
+    async def start(self):
+        index=2
+        start_urls = [
+            "https://quotes.toscrape.com/page/2"
+        ]
+        for url in start_urls:
+            yield scrapy.Request(url = url, callback = self.parse, meta = {"page_id":index, "time": datetime.datetime})
+            index+=1
+
+    def parse(self, response):
+        yield response.meta
+        page_id = response.meta["page_id"]    
+        quote_id = 0
+        for quote in response.css("div.quote"):
+            quote_text = quote.css("span.text::text").get()
+            quote_author = quote.css("small.author::text").get()
+            quote_tags = quote.css("div.tags a.tag::text").getall()
+            quote_id+=1
+
+            yield {
+                "page_id" : page_id,
+                "quote_id" : quote_id,
+                "quote_text" : quote_text,
+                "quote_author" :quote_author,
+                "quote_tags" : quote_tags,
+            }
