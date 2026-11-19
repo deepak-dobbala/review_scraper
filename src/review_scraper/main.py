@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup
 from pathlib import Path
 import datetime
 
+from scrapy.crawler import CrawlerProcess
+
 # to run the spider wee have two ways 
 # 1. use crawl > $ scrapy crawl quotes , this willwork when  the scrapy rpoejct was initalized
 # 2. use runspider > $ scrapy runspider main.py , this works for standalone files that can be runin regular python projects
@@ -23,11 +25,11 @@ class DemoScraper(scrapy.Spider):
             #"https://quotes.toscrape.com/page/2",
         ]
 
-        # SCrapy does not  use threads instead  of which it sends out sync await requests and it does not waste any computing potential on watiting for the ressponse
+        # SCrapy does not  use threads instead  of which it sends out async await requests and it does not waste any computing potential on watiting for the ressponse
         index=0
         for url in start_urls:
             # Insert th page_id into the metadata which will beused to bookmark the responses 
-            yield scrapy.Request(url=url, callback=self.parse, meta={"page_id":index})
+            yield scrapy.Request(url=url, callback=self.parse, meta={"page_id":index, "time":datetime.datetime.now().isoformat()})
             index+=1
 
     def parse(self, response):
@@ -75,18 +77,20 @@ class DemoScraper(scrapy.Spider):
         # we can also use a follow_all() function to throw in all the next__page linkes without having to loop over the list
         # in the Request objects for scrapy the 'callback' attribute dictates what function should be executed once the HTML resposneis obtained
 
-        # for next_page in response.css('li.next a[href^="/page"]::attr(href)').getall():
-        #     if next_page is None:
-        #         continue
-        #     yield response.follow(next_page,callback = self.parse, meta = {"page_id":page_id+1})
+        for next_page in response.css('li.next a[href^="/page"]::attr(href)').getall():
+            if next_page is None:
+                continue
+            yield response.follow(next_page,callback = self.parse, meta = {"page_id":page_id+1})
 
-        # next_page_list = response.css("li.next a[href^='/page']::attr(href)").getall()
-        # yield from response.follow_all(next_page_list, callback = self.parse, meta = {"page_id":page_id+1})
+        next_page_list = response.css("li.next a[href^='/page']::attr(href)").getall()
+        yield from response.follow_all(next_page_list, callback = self.parse, meta = {"page_id":page_id+1})
 
-        # next_page = response.css('li.next a[href^="/page"]::attr(href)').get()
-        # next_page = response.urljoin(next_page)
-        # yield scrapy.Request(next_page, callback = self.parse, meta = {"page_id":page_id+1})
+        next_page = response.css('li.next a[href^="/page"]::attr(href)').get()
+        next_page = response.urljoin(next_page)
+        yield scrapy.Request(next_page, callback = self.parse, meta = {"page_id":page_id+1})
 
+
+# WE usually donot run multiple scrapers if we want tohave a standalone file we need to segregate  the files for specifc scraping purpose
 
 class DemoScraper2(scrapy.Spider):
     name = "quotes2"
@@ -97,7 +101,7 @@ class DemoScraper2(scrapy.Spider):
             "https://quotes.toscrape.com/page/2"
         ]
         for url in start_urls:
-            yield scrapy.Request(url = url, callback = self.parse, meta = {"page_id":index, "time": datetime.datetime})
+            yield scrapy.Request(url = url, callback = self.parse, meta = {"page_id":index, "time": datetime.datetime.now().isoformat()})
             index+=1
 
     def parse(self, response):
@@ -117,3 +121,22 @@ class DemoScraper2(scrapy.Spider):
                 "quote_author" :quote_author,
                 "quote_tags" : quote_tags,
             }
+        
+
+if __name__=="__main__":
+    crawler = CrawlerProcess(
+        settings= {
+            "FEEDS": {
+                "quotes.jsonl": {
+                    "format" : "jsonlines",
+                    "encoding" : "utf8",
+                    "overwrite" : False,
+                }
+            }
+        }
+    )
+
+    #crawler.crawl(DemoScraper2)
+    crawler.crawl(DemoScraper)
+
+    crawler.start()
