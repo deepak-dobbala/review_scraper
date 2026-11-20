@@ -1,0 +1,287 @@
+2026-11-20 18:23:16 [scrapy.utils.log] INFO: Scrapy 2.19.0 started (bot: scrapybot)
+2026-11-20 18:23:16 [scrapy.utils.log] INFO: Versions:
+{'lxml': '6.1.3',
+ 'libxml2': '2.14.6',
+ 'cssselect': '1.6.0',
+ 'parsel': '1.12.1',
+ 'w3lib': '2.5.0',
+ 'Twisted': '26.10.0',
+ 'Python': '3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]',
+ 'pyOpenSSL': '26.4.0 (OpenSSL 4.0.3 29 Sep 2026)',
+ 'cryptography': '50.0.2',
+ 'Platform': 'Linux-6.18.55+-x86_64-with-glibc2.39'}
+2026-11-20 18:23:16 [scrapy.addons] INFO: Enabled addons:
+[]
+2026-11-20 18:23:16 [scrapy.extensions.telnet] INFO: Telnet Password: 2e4ac67037b76ec0
+2026-11-20 18:23:16 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.logcount.LogCount',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.remote_control.RemoteControl']
+2026-11-20 18:23:16 [scrapy.crawler] INFO: Overridden settings:
+{'LOG_FILE': 'crawl_spider.log', 'LOG_LEVEL': 'INFO'}
+2026-11-20 18:23:16 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2026-11-20 18:23:16 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.start.StartSpiderMiddleware',
+ 'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware',
+ 'scrapy.spidermiddlewares.metacopy.MetaCopyDetectionMiddleware']
+2026-11-20 18:23:16 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2026-11-20 18:23:16 [scrapy.core.engine] INFO: Spider opened
+2026-11-20 18:23:16 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2026-11-20 18:23:16 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2026-11-20 18:23:16 [scrapy.extensions.remote_control] INFO: Remote control HTTP server listening on port 45885 (job 4588-5834cdc1465844a0b722a34409997bb7)
+2026-11-20 18:23:19 [scrapy.core.engine] INFO: Closing spider (finished)
+2026-11-20 18:23:19 [scrapy.extensions.feedexport] INFO: Stored jsonlines feed (100 items) in: quotes.jsonl
+2026-11-20 18:23:19 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 2771,
+ 'downloader/request_count': 10,
+ 'downloader/request_method_count/GET': 10,
+ 'downloader/response_bytes': 22555,
+ 'downloader/response_count': 10,
+ 'downloader/response_status_count/200': 10,
+ 'elapsed_time_seconds': 2.892383749000146,
+ 'feedexport/success_count/FileFeedStorage': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2026, 11, 20, 18, 23, 19, 870356, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 108671,
+ 'httpcompression/response_count': 10,
+ 'item_scraped_count': 100,
+ 'items_per_minute': 3000.0,
+ 'log_count/INFO': 4,
+ 'memusage/max': 80850944,
+ 'memusage/startup': 80850944,
+ 'request_depth_max': 9,
+ 'response_received_count': 10,
+ 'responses_per_minute': 300.0,
+ 'scheduler/dequeued': 10,
+ 'scheduler/dequeued/memory': 10,
+ 'scheduler/enqueued': 10,
+ 'scheduler/enqueued/memory': 10,
+ 'start_time': datetime.datetime(2026, 11, 20, 18, 23, 16, 977970, tzinfo=datetime.timezone.utc)}
+2026-11-20 18:23:19 [scrapy.core.engine] INFO: Spider closed (finished)
+2026-11-20 18:24:51 [scrapy.utils.log] INFO: Scrapy 2.19.0 started (bot: scrapybot)
+2026-11-20 18:24:51 [scrapy.utils.log] INFO: Versions:
+{'lxml': '6.1.3',
+ 'libxml2': '2.14.6',
+ 'cssselect': '1.6.0',
+ 'parsel': '1.12.1',
+ 'w3lib': '2.5.0',
+ 'Twisted': '26.10.0',
+ 'Python': '3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]',
+ 'pyOpenSSL': '26.4.0 (OpenSSL 4.0.3 29 Sep 2026)',
+ 'cryptography': '50.0.2',
+ 'Platform': 'Linux-6.18.55+-x86_64-with-glibc2.39'}
+2026-11-20 18:24:51 [scrapy.addons] INFO: Enabled addons:
+[]
+2026-11-20 18:24:51 [scrapy.extensions.telnet] INFO: Telnet Password: b1070bd9fbc414aa
+2026-11-20 18:24:51 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.logcount.LogCount',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.remote_control.RemoteControl']
+2026-11-20 18:24:51 [scrapy.crawler] INFO: Overridden settings:
+{'LOG_FILE': 'crawl_spider.log', 'LOG_LEVEL': 'INFO'}
+2026-11-20 18:24:51 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2026-11-20 18:24:51 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.start.StartSpiderMiddleware',
+ 'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware',
+ 'scrapy.spidermiddlewares.metacopy.MetaCopyDetectionMiddleware']
+2026-11-20 18:24:51 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2026-11-20 18:24:51 [scrapy.core.engine] INFO: Spider opened
+2026-11-20 18:24:51 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2026-11-20 18:24:51 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2026-11-20 18:24:51 [scrapy.extensions.remote_control] INFO: Remote control HTTP server listening on port 43551 (job 4642-6576c4fc2ec5411aa5057b816c3d6306)
+2026-11-20 18:24:52 [scrapy.utils.signal] ERROR: Error caught on signal handler: <bound method FeedExporter.item_scraped of <scrapy.extensions.feedexport.FeedExporter object at 0x7c79b664e390>>
+Traceback (most recent call last):
+  File "/home/dobbaladeepak2/review-scraper/.venv/lib/python3.12/site-packages/scrapy/utils/signal.py", line 192, in handler
+    robustApply(
+  File "/home/dobbaladeepak2/review-scraper/.venv/lib/python3.12/site-packages/pydispatch/robustapply.py", line 55, in robustApply
+    return receiver(*arguments, **named)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dobbaladeepak2/review-scraper/.venv/lib/python3.12/site-packages/scrapy/extensions/feedexport.py", line 678, in item_scraped
+    slot.exporter.export_item(item)
+  File "/home/dobbaladeepak2/review-scraper/.venv/lib/python3.12/site-packages/scrapy/exporters.py", line 144, in export_item
+    itemdict = dict(self.get_serialized_fields(item))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dobbaladeepak2/review-scraper/.venv/lib/python3.12/site-packages/scrapy/exporters.py", line 99, in get_serialized_fields
+    item = ItemAdapter(item)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/dobbaladeepak2/review-scraper/.venv/lib/python3.12/site-packages/itemadapter/adapter.py", line 409, in __init__
+    raise TypeError(f"No adapter found for objects of type: {type(item)} ({item})")
+TypeError: No adapter found for objects of type: <class 'generator'> (<generator object CrawlSpiderDemo.parse_response at 0x7c79b5b2fd00>)
+2026-11-20 18:24:54 [scrapy.core.engine] INFO: Closing spider (finished)
+2026-11-20 18:24:54 [scrapy.extensions.feedexport] INFO: Stored jsonlines feed (90 items) in: quotes.jsonl
+2026-11-20 18:24:54 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 2771,
+ 'downloader/request_count': 10,
+ 'downloader/request_method_count/GET': 10,
+ 'downloader/response_bytes': 22569,
+ 'downloader/response_count': 10,
+ 'downloader/response_status_count/200': 10,
+ 'elapsed_time_seconds': 3.187463530000059,
+ 'feedexport/success_count/FileFeedStorage': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2026, 11, 20, 18, 24, 54, 710295, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 108671,
+ 'httpcompression/response_count': 10,
+ 'item_scraped_count': 91,
+ 'items_per_minute': 1820.0,
+ 'log_count/ERROR': 1,
+ 'log_count/INFO': 4,
+ 'memusage/max': 80662528,
+ 'memusage/startup': 80662528,
+ 'request_depth_max': 9,
+ 'response_received_count': 10,
+ 'responses_per_minute': 200.0,
+ 'scheduler/dequeued': 10,
+ 'scheduler/dequeued/memory': 10,
+ 'scheduler/enqueued': 10,
+ 'scheduler/enqueued/memory': 10,
+ 'start_time': datetime.datetime(2026, 11, 20, 18, 24, 51, 522831, tzinfo=datetime.timezone.utc)}
+2026-11-20 18:24:54 [scrapy.core.engine] INFO: Spider closed (finished)
+2026-11-20 18:25:28 [scrapy.utils.log] INFO: Scrapy 2.19.0 started (bot: scrapybot)
+2026-11-20 18:25:28 [scrapy.utils.log] INFO: Versions:
+{'lxml': '6.1.3',
+ 'libxml2': '2.14.6',
+ 'cssselect': '1.6.0',
+ 'parsel': '1.12.1',
+ 'w3lib': '2.5.0',
+ 'Twisted': '26.10.0',
+ 'Python': '3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]',
+ 'pyOpenSSL': '26.4.0 (OpenSSL 4.0.3 29 Sep 2026)',
+ 'cryptography': '50.0.2',
+ 'Platform': 'Linux-6.18.55+-x86_64-with-glibc2.39'}
+2026-11-20 18:25:28 [scrapy.addons] INFO: Enabled addons:
+[]
+2026-11-20 18:25:28 [scrapy.extensions.telnet] INFO: Telnet Password: 70185c11c296c672
+2026-11-20 18:25:28 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.logcount.LogCount',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats',
+ 'scrapy.extensions.remote_control.RemoteControl']
+2026-11-20 18:25:28 [scrapy.crawler] INFO: Overridden settings:
+{'LOG_FILE': 'crawl_spider.log', 'LOG_LEVEL': 'INFO'}
+2026-11-20 18:25:28 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2026-11-20 18:25:28 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.start.StartSpiderMiddleware',
+ 'scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware',
+ 'scrapy.spidermiddlewares.metacopy.MetaCopyDetectionMiddleware']
+2026-11-20 18:25:28 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2026-11-20 18:25:28 [scrapy.core.engine] INFO: Spider opened
+2026-11-20 18:25:29 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2026-11-20 18:25:29 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2026-11-20 18:25:29 [scrapy.extensions.remote_control] INFO: Remote control HTTP server listening on port 43701 (job 4840-5bf20f12f9174880a098c4064a573e9e)
+2026-11-20 18:25:29 [scrapy.utils.signal] ERROR: Error caught on signal handler: <bound method FeedExporter.item_scraped of <scrapy.extensions.feedexport.FeedExporter object at 0x7a2d95fea8d0>>
+Traceback (most recent call last):
+  File "/home/dobbaladeepak2/review-scraper/.venv/lib/python3.12/site-packages/scrapy/utils/signal.py", line 192, in handler
+    robustApply(
+  File "/home/dobbaladeepak2/review-scraper/.venv/lib/python3.12/site-packages/pydispatch/robustapply.py", line 55, in robustApply
+    return receiver(*arguments, **named)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dobbaladeepak2/review-scraper/.venv/lib/python3.12/site-packages/scrapy/extensions/feedexport.py", line 678, in item_scraped
+    slot.exporter.export_item(item)
+  File "/home/dobbaladeepak2/review-scraper/.venv/lib/python3.12/site-packages/scrapy/exporters.py", line 144, in export_item
+    itemdict = dict(self.get_serialized_fields(item))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/dobbaladeepak2/review-scraper/.venv/lib/python3.12/site-packages/scrapy/exporters.py", line 99, in get_serialized_fields
+    item = ItemAdapter(item)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/dobbaladeepak2/review-scraper/.venv/lib/python3.12/site-packages/itemadapter/adapter.py", line 409, in __init__
+    raise TypeError(f"No adapter found for objects of type: {type(item)} ({item})")
+TypeError: No adapter found for objects of type: <class 'generator'> (<generator object CrawlSpiderDemo.parse_response at 0x7a2d953ebd00>)
+2026-11-20 18:25:29 [quotes_crawl_spider] INFO: Gathering response from the page : https://quotes.toscrape.com/page/2/
+2026-11-20 18:25:30 [quotes_crawl_spider] INFO: Gathering response from the page : https://quotes.toscrape.com/page/3/
+2026-11-20 18:25:30 [quotes_crawl_spider] INFO: Gathering response from the page : https://quotes.toscrape.com/page/4/
+2026-11-20 18:25:30 [quotes_crawl_spider] INFO: Gathering response from the page : https://quotes.toscrape.com/page/5/
+2026-11-20 18:25:30 [quotes_crawl_spider] INFO: Gathering response from the page : https://quotes.toscrape.com/page/6/
+2026-11-20 18:25:31 [quotes_crawl_spider] INFO: Gathering response from the page : https://quotes.toscrape.com/page/7/
+2026-11-20 18:25:31 [quotes_crawl_spider] INFO: Gathering response from the page : https://quotes.toscrape.com/page/8/
+2026-11-20 18:25:31 [quotes_crawl_spider] INFO: Gathering response from the page : https://quotes.toscrape.com/page/9/
+2026-11-20 18:25:31 [quotes_crawl_spider] INFO: Gathering response from the page : https://quotes.toscrape.com/page/10/
+2026-11-20 18:25:31 [scrapy.core.engine] INFO: Closing spider (finished)
+2026-11-20 18:25:31 [scrapy.extensions.feedexport] INFO: Stored jsonlines feed (90 items) in: quotes.jsonl
+2026-11-20 18:25:31 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/request_bytes': 2771,
+ 'downloader/request_count': 10,
+ 'downloader/request_method_count/GET': 10,
+ 'downloader/response_bytes': 22565,
+ 'downloader/response_count': 10,
+ 'downloader/response_status_count/200': 10,
+ 'elapsed_time_seconds': 2.790537606999351,
+ 'feedexport/success_count/FileFeedStorage': 1,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2026, 11, 20, 18, 25, 31, 790222, tzinfo=datetime.timezone.utc),
+ 'httpcompression/response_bytes': 108671,
+ 'httpcompression/response_count': 10,
+ 'item_scraped_count': 91,
+ 'items_per_minute': 2730.0,
+ 'log_count/ERROR': 1,
+ 'log_count/INFO': 13,
+ 'memusage/max': 80732160,
+ 'memusage/startup': 80732160,
+ 'request_depth_max': 9,
+ 'response_received_count': 10,
+ 'responses_per_minute': 300.0,
+ 'scheduler/dequeued': 10,
+ 'scheduler/dequeued/memory': 10,
+ 'scheduler/enqueued': 10,
+ 'scheduler/enqueued/memory': 10,
+ 'start_time': datetime.datetime(2026, 11, 20, 18, 25, 28, 999682, tzinfo=datetime.timezone.utc)}
+2026-11-20 18:25:31 [scrapy.core.engine] INFO: Spider closed (finished)
