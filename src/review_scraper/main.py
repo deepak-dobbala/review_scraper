@@ -1,5 +1,6 @@
 import sys
 # Scrapy is for fast and reliable multi threaded crawling framework that uses HTTP responses to collect information
+import logging
 import scrapy
 # BeautifulSoup or bs4 is for theformatting and linting sections of the response  body; can also be used for parsing and modifying the data in the HTML or XMl data
 from bs4 import BeautifulSoup
@@ -32,6 +33,24 @@ class DemoScraper(scrapy.Spider):
             yield scrapy.Request(url=url, callback=self.parse, meta={"page_id":index, "time":datetime.datetime.now().isoformat()})
             index+=1
 
+    def parse_authors(self,  response):
+        # file_path = Path(f"pages/author.html")
+        # file_path.parent.mkdir(parents= True, exist_ok= True)
+        # html_body = BeautifulSoup(response.body, 'html.parser').prettify()
+        # with open(file_path,'w') as author_file:
+        #     author_file.write(html_body)
+
+        author_name = response.css("div.author-details h3.author-title::text").get()
+        author_dob = response.css("div.author-details p span.author-born-date::text").get()
+        author_desc = response.css("div.author-details div.author-description::text").get()
+
+        yield {
+            "author-name" : author_name,
+            "author-date of birth" : author_dob,
+            "author-description" : author_dob,
+        }
+
+
     def parse(self, response):
 
         # The following set of commented lines of code is to see the html data before performing any processing on the data it automatically formats and pushes the data into a file
@@ -44,7 +63,7 @@ class DemoScraper(scrapy.Spider):
         # html_soup = BeautifulSoup(response.body,'html.parser')
         # with open(file_path,'w') as output_file:
         #     output_file.write(html_soup.prettify())
-        #print(f"written to the file {file_path}") 
+        # print(f"written to the file {file_path}") 
         page_id = response.meta['page_id']
         response.meta["url"] = str(response)
         quote_id = 0
@@ -72,22 +91,29 @@ class DemoScraper(scrapy.Spider):
         #     for record in data:
         #         output_file.write(str(record)+"\n")
 
-        # we can use Two type of fcallback functions to trigger the link following on is the usual scrapy.Request() fucntions  which returns a callback function that will access the info from the reroute url
+
+        # we can use Two type of fallback functions to trigger the link following on is the usual scrapy.Request() fucntions  which returns a callback function that will access the info from the reroute url
         # The second Method is using response.follow() function  it will also return a request object but is not required to urljoin() before hand
         # we can also use a follow_all() function to throw in all the next__page linkes without having to loop over the list
         # in the Request objects for scrapy the 'callback' attribute dictates what function should be executed once the HTML resposneis obtained
 
-        for next_page in response.css('li.next a[href^="/page"]::attr(href)').getall():
-            if next_page is None:
-                continue
-            yield response.follow(next_page,callback = self.parse, meta = {"page_id":page_id+1})
+        # METHOD 1: using a for  loop on  all the selector objects
+        # for next_page in response.css('li.next a[href^="/page"]::attr(href)').getall():
+        #     if next_page is None:
+        #         continue
+        #     yield response.follow(next_page,callback = self.parse, meta = {"page_id":page_id+1})
 
+        # next_page = response.css('li.next a[href^="/page"]::attr(href)').get()
+        # next_page = response.urljoin(next_page)
+        # yield scrapy.Request(next_page, callback = self.parse, meta = {"page_id":page_id+1})
+
+        # METHOD 2: Using getall() for selectors list and follow_all() function to  forward requests to the pages
         next_page_list = response.css("li.next a[href^='/page']::attr(href)").getall()
         yield from response.follow_all(next_page_list, callback = self.parse, meta = {"page_id":page_id+1})
 
-        next_page = response.css('li.next a[href^="/page"]::attr(href)').get()
-        next_page = response.urljoin(next_page)
-        yield scrapy.Request(next_page, callback = self.parse, meta = {"page_id":page_id+1})
+        author_page_list = response.css("div.quote span a[href^='/author']::attr(href)").getall()
+        yield from response.follow_all(author_page_list, callback = self.parse_authors)
+        
 
 
 # WE usually donot run multiple scrapers if we want tohave a standalone file we need to segregate  the files for specifc scraping purpose
@@ -130,9 +156,12 @@ if __name__=="__main__":
                 "quotes.jsonl": {
                     "format" : "jsonlines",
                     "encoding" : "utf8",
-                    "overwrite" : False,
+                    "overwrite" : True,
                 }
-            }
+            },
+            "LOG_LEVEL" : "INFO",
+            "LOG_FILE" : "crawl_spider.log",
+            "LOG_FILE_APPEND" : True
         }
     )
 
