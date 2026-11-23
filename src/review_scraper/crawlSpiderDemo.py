@@ -46,6 +46,8 @@ class CrawlSpiderDemo(CrawlSpider):
             quote_author = quote_body.css("span small.author::text").get()
             quote_tags  = quote_body.css("div.tags a.tag::text").getall()
 
+
+            # using Yield keyword makes the block of code i.e, parse_response function into a Generator
             yield {
                 "page_url" : page_url,
                 "quote_id" : quote_id,
@@ -59,7 +61,10 @@ class CrawlSpiderDemo(CrawlSpider):
     # This is the default fucntion used to handle the source url before reaching any subsequent urls 
     # overriding this and linking it to our own "parse_response()" function will give us homogenous processingacross all the pages
     def parse_start_url(self, response):
-        yield self.parse_response(response)
+
+        # yield from is acceptable from a generator block only
+        # using yiled from on a simple return block will cause it to return the error : yield from self.parse_response(response); TypeError: 'NoneType' object is not iterable
+        yield from self.parse_response(response)
 
 
 if __name__ == "__main__":
