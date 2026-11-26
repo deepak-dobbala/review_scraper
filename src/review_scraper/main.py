@@ -47,7 +47,7 @@ class DemoScraper(scrapy.Spider):
         yield {
             "author-name" : author_name,
             "author-date of birth" : author_dob,
-            "author-description" : author_dob,
+            "author-description" : author_desc,
         }
 
 
